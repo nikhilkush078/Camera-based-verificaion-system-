@@ -68,19 +68,16 @@ The system functions through a synchronized three-phase process:
 *   Python 3.12+
 *   Arduino IDE (for ESP32/ESP8266 firmware)
 
+>
+> 
+YOUTUBE EXPLAINATION VIDEO WITH DEMOSTRATION - https://youtu.be/ezGEntegwR8?feature=shared
+
+SCHEMETIC DIAGRAM - https://u.easyeda.com/join?type=project\&key=9cd9b9547d57c8c4d0d3f8d251307d29\&inviter=daca3f5d21f74c309367984f05076846
+
 ### Python Libraries
 Install the required dependencies:
-
-YOUTUBE EXPLAINATION VIDEO WITH DEMOSTRATION - https://youtu.be/ezGEntegwR8?feature=shared
-
-SCHEMETIC DIAGRAM - https://u.easyeda.com/join?type=project\&key=9cd9b9547d57c8c4d0d3f8d251307d29\&inviter=daca3f5d21f74c309367984f05076846
-
 ```bash
 pip install opencv-python face_recognition flask numpy pillow
-
-YOUTUBE EXPLAINATION VIDEO WITH DEMOSTRATION - https://youtu.be/ezGEntegwR8?feature=shared
-
-SCHEMETIC DIAGRAM - https://u.easyeda.com/join?type=project\&key=9cd9b9547d57c8c4d0d3f8d251307d29\&inviter=daca3f5d21f74c309367984f05076846
 
 
 
