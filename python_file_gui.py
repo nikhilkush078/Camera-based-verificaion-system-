@@ -100,6 +100,38 @@ root.title("ESP32-CAM Local Attendance System")
 root.geometry("800x600")
 root.configure(bg="#2c3e50")
 
+# Header: College Branding
+top_frame = tk.Frame(root, bg="#2c3e50", padx=20, pady=10)
+top_frame.pack(side="top", fill="x")
+
+logo_path = "college_logo.png"
+logo_label = tk.Label(top_frame, bg="#2c3e50")
+if os.path.exists(logo_path):
+    try:
+        logo_img = Image.open(logo_path)
+        logo_img = logo_img.resize((80, 80), Image.Resampling.LANCZOS)
+        logo_photo = ImageTk.PhotoImage(logo_img)
+        logo_label.config(image=logo_photo)
+        logo_label.image = logo_photo
+    except Exception:
+        logo_label.config(text="LOGO", fg="white", font=("Arial", 10, "bold"))
+else:
+    logo_label.config(text="LOGO", fg="white", font=("Arial", 10, "bold"))
+logo_label.pack(side="left", padx=(0, 15))
+
+header_text_frame = tk.Frame(top_frame, bg="#2c3e50")
+header_text_frame.pack(side="left", anchor="w")
+tk.Label(header_text_frame,
+         text="SAMRAT ASHOK TECHNOLOGICAL INSTITUTE",
+         font=("Arial", 16, "bold"),
+         bg="#2c3e50",
+         fg="white").pack(anchor="w")
+tk.Label(header_text_frame,
+         text="DEPARTMENT OF INTERNET OF THINGS",
+         font=("Arial", 12),
+         bg="#2c3e50",
+         fg="#ecf0f1").pack(anchor="w")
+
 # Left Panel: Image & Status
 left_frame = tk.Frame(root, bg="#2c3e50", padx=20, pady=20)
 left_frame.pack(side="left", fill="both", expand=True)
