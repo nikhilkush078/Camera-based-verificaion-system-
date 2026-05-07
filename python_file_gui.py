@@ -18,11 +18,6 @@ KNOWN_FACES_DIR = "known_faces"
 RECEIVED_DIR = "received_captures"
 ATTENDANCE_FILE = "attendance.csv"
 
-# Ensure directories exist
-for folder in [KNOWN_FACES_DIR, RECEIVED_DIR]:
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-
 known_encodings = []
 known_names = []
 
@@ -46,15 +41,12 @@ def upload():
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     if img is None: return "INVALID", 400
 
-    # --- FIX: Rotate image 180 degrees for upside-down camera ---
-    img = cv2.rotate(img, cv2.ROTATE_180)
-
     # Save capture
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     save_path = os.path.join(RECEIVED_DIR, f"cap_{timestamp}.jpg")
     cv2.imwrite(save_path, img)
 
-    # Recognition logic
+    # Recognition
     rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     face_locs = face_recognition.face_locations(rgb_img)
     face_encs = face_recognition.face_encodings(rgb_img, face_locs)
@@ -79,11 +71,8 @@ def upload():
 
 def log_attendance(name):
     now = datetime.now()
-    file_exists = os.path.isfile(ATTENDANCE_FILE)
     with open(ATTENDANCE_FILE, 'a', newline='') as f:
         writer = csv.writer(f)
-        if not file_exists:
-            writer.writerow(["Name", "Date", "Time"])
         writer.writerow([name, now.strftime("%Y-%m-%d"), now.strftime("%H:%M:%S")])
 
 # --- Frontend Logic (Tkinter) ---
@@ -103,7 +92,6 @@ def update_gui(img_path, status, name, color):
     tree.insert("", 0, values=(datetime.now().strftime("%H:%M:%S"), name, status))
 
 def start_server():
-    # Use threaded=True to handle requests without blocking
     app.run(host='0.0.0.0', port=5000, threaded=True)
 
 # GUI Setup
